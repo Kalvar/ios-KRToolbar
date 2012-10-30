@@ -13,15 +13,6 @@ KRToolbar supports MRC ( Manual Reference Counting ), if you did want it support
 KRToolbar which will control the UIToolbar to watch and fit Keyboard events of appear or disappear, that UIToolbar will match slide up to upper or slide down to hide with the keyboard changed its status at the same time.
 
 ``` objective-c
-@interface ViewController(){
-@private
-    IBOutlet UIToolbar *_toolbar;
-    IBOutlet UITextField *_textField1;
-    IBOutlet UITextField *_textField2;
-}
-@property (nonatomic, retain) KRToolbar *_krToolbar;
-@end
-
 - (void)viewDidLoad
 {
     _krToolbar = [[KRToolbar alloc] initWithToolbar:_toolbar mappingView:self.view];
