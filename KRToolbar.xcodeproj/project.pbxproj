@@ -62,6 +62,7 @@
 				8EB58E5C163FE34900E425B4 /* Classes */,
 				8EB58E3F163FE32300E425B4 /* KRToolbar */,
 				8EB58E38163FE32300E425B4 /* Frameworks */,
+				8EB58E40163FE32300E425B4 /* Supporting Files */,
 				8EB58E36163FE32300E425B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,7 +93,6 @@
 				8EB58E51163FE32300E425B4 /* ViewController.h */,
 				8EB58E52163FE32300E425B4 /* ViewController.m */,
 				8EB58E54163FE32300E425B4 /* ViewController.xib */,
-				8EB58E40163FE32300E425B4 /* Supporting Files */,
 			);
 			path = KRToolbar;
 			sourceTree = "<group>";
@@ -109,6 +109,7 @@
 				8EB58E4F163FE32300E425B4 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			path = KRToolbar;
 			sourceTree = "<group>";
 		};
 		8EB58E5C163FE34900E425B4 /* Classes */ = {
@@ -305,6 +306,7 @@
 				8EB58E5B163FE32300E425B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KRToolbar.h"
 
-@interface ViewController : UIViewController<UITextFieldDelegate>{
+@interface ViewController : UIViewController<UITextFieldDelegate, KRToolbarDelegate>{
 
 @private
     IBOutlet UIToolbar *_toolbar;

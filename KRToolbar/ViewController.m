@@ -7,11 +7,30 @@
 //
 
 #import "ViewController.h"
-#import "KRToolbar.h"
+
 
 @interface ViewController ()
 
 @property (nonatomic, retain) KRToolbar *_krToolbar;
+
+@end
+
+@interface ViewController (fixPrivate)
+
+-(void)_backToInit;
+
+@end
+
+@implementation ViewController (fixPrivate)
+
+-(void)_backToInit{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    self.view.frame = CGRectMake(0.0f, 20.0f, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
+}
 
 @end
 
@@ -21,11 +40,19 @@
 
 - (void)viewDidLoad
 {
-    _krToolbar = [[KRToolbar alloc] initWithToolbar:_toolbar mappingView:self.view];
+    _krToolbar = [[KRToolbar alloc] init];
+    self._krToolbar.delegate = self;
+    self._krToolbar.linkMove = NO;
     [self._krToolbar watchKeyboard];
-    [self._krToolbar hide];
     
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //在這裡才能正確的抓到目標 View 座標
+    [self._krToolbar setToolbar:_toolbar mappingView:self.view];
+    [self._krToolbar hide];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +68,7 @@
 
 #pragma IBActions
 -(IBAction)done:(id)sender{
+    [self _backToInit];
     [_textField1 resignFirstResponder];
     [_textField2 resignFirstResponder];
 }
@@ -59,12 +87,25 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self _backToInit];
     [textField resignFirstResponder];
 	return YES;
 }
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     return YES;
+}
+
+#pragma KRToolbarDelegate
+-(void)krToolbar:(KRToolbar *)_aKRToolbar didFinishedAndHideToolbarToPoints:(CGPoint)_toPoints{
+}
+
+-(void)krToolbar:(KRToolbar *)_aKRToolbar trackChangingSlideDownToPoints:(CGPoint)_toPoints{
+    
+}
+
+-(void)krToolbar:(KRToolbar *)_aKRToolbar trackChangingSlideUpToPoints:(CGPoint)_toPoints{
+    
 }
 
 

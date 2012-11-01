@@ -15,10 +15,17 @@ KRToolbar which will control the UIToolbar to watch and fit Keyboard events of a
 ``` objective-c
 - (void)viewDidLoad
 {
-    _krToolbar = [[KRToolbar alloc] initWithToolbar:_toolbar mappingView:self.view];
+    _krToolbar = [[KRToolbar alloc] init];
+    self._krToolbar.delegate = self;
+    self._krToolbar.linkMove = YES;
     [self._krToolbar watchKeyboard];
-    [self._krToolbar hide];
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self._krToolbar setToolbar:_toolbar mappingView:self.view];
+    [self._krToolbar hide];
+    [super viewWillAppear:animated];
 }
 
 #pragma UITextFieldDelegate
@@ -31,6 +38,22 @@ KRToolbar which will control the UIToolbar to watch and fit Keyboard events of a
     textField.returnKeyType      = UIReturnKeyDone;
     textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     return YES;
+}
+
+#pragma KRToolbarDelegate
+//It Keep Changing Slide up.
+-(void)krToolbar:(KRToolbar *)_aKRToolbar trackChangingSlideUpToPoints:(CGPoint)_toPoints{
+	
+}
+
+//It Keep Changing Slide down.
+-(void)krToolbar:(KRToolbar *)_aKRToolbar trackChangingSlideDownToPoints:(CGPoint)_toPoints{
+	
+}
+
+//It did Finish and Hide the Toolbar.
+-(void)krToolbar:(KRToolbar *)_aKRToolbar didFinishedAndHideToolbarToPoints:(CGPoint)_toPoints{
+    
 }
 ```
 
