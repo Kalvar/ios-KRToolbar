@@ -59,7 +59,7 @@ KRToolbar which will control the UIToolbar to watch and fit Keyboard events of a
 
 ## Version
 
-KRToolbar now is V0.1 beta.
+KRToolbar now is V0.2 beta.
 
 ## License
 
