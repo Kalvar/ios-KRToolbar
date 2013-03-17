@@ -50,15 +50,14 @@
                         toX:(float)_toX
                         toY:(float)_toY
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    _targetView.frame = CGRectMake(_toX,
-                                   _toY,
-                                   _targetView.frame.size.width,
-                                   _targetView.frame.size.height);
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        _targetView.frame = CGRectMake(_toX,
+                                       _toY,
+                                       _targetView.frame.size.width,
+                                       _targetView.frame.size.height);
+    } completion:^(BOOL finished) {
+        //...
+    }];
 }
 
 //動態上下移動 UIView 位置
@@ -66,21 +65,20 @@
             distance:(float)_distance
               goBack:(BOOL)_isBack
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    float moveX      = (float) _viewObj.frame.origin.x;
-    float moveY      = (float) _viewObj.frame.origin.y;
-    float moveWidth  = (float) _viewObj.frame.size.width;
-    float moveHeight = (float) _viewObj.frame.size.height;
-    if( !_isBack ){
-        moveY -= _distance;
-    }else{
-        moveY += _distance;
-    }
-    _viewObj.frame = CGRectMake( moveX, moveY, moveWidth, moveHeight );
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        float moveX      = (float) _viewObj.frame.origin.x;
+        float moveY      = (float) _viewObj.frame.origin.y;
+        float moveWidth  = (float) _viewObj.frame.size.width;
+        float moveHeight = (float) _viewObj.frame.size.height;
+        if( !_isBack ){
+            moveY -= _distance;
+        }else{
+            moveY += _distance;
+        }
+        _viewObj.frame = CGRectMake( moveX, moveY, moveWidth, moveHeight );
+    } completion:^(BOOL finished) {
+        //...
+    }];
 }
 
 /*
