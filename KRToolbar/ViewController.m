@@ -40,19 +40,20 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     _krToolbar = [[KRToolbar alloc] init];
     self._krToolbar.delegate = self;
     self._krToolbar.linkMove = NO;
     [self._krToolbar watchKeyboard];
     
-    [super viewDidLoad];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     //在這裡才能正確的抓到目標 View 座標
     [self._krToolbar setToolbar:_toolbar mappingView:self.view];
     [self._krToolbar hide];
-    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,13 +62,15 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)dealloc{
+-(void)dealloc
+{
     [_krToolbar release];
     [super dealloc];
 }
 
 #pragma IBActions
--(IBAction)done:(id)sender{
+-(IBAction)done:(id)sender
+{
     [self _backToInit];
     [_textField1 resignFirstResponder];
     [_textField2 resignFirstResponder];
@@ -98,6 +101,7 @@
 
 #pragma KRToolbarDelegate
 -(void)krToolbar:(KRToolbar *)_aKRToolbar didFinishedAndHideToolbarToPoints:(CGPoint)_toPoints{
+    
 }
 
 -(void)krToolbar:(KRToolbar *)_aKRToolbar trackChangingSlideDownToPoints:(CGPoint)_toPoints{
